@@ -9,16 +9,19 @@ import math as math
 
 ################################### 1. RMSE #####################################
 #loading the data as a data frame
-file_path = input('Enter your file path for the housing_data.csv file:')
-
 #importing as a pandas data frame to make the data easy to work with, 
 #the try block is to help the user out, if they just enter the file path
 #it'll grab the housing_data.csv file from the path provided, or if they
 #enter the filepath and the file name, it'll take that too.
+
 try:
-    df = pd.read_csv(f'{file_path}')
+    df = pd.read_csv('housing_data.csv')
 except:
-    df = pd.read_csv(f'{file_path}\housing_data.csv')
+    file_path = input('Enter your file path for housing_data.csv:')  
+    try:
+        df = pd.read_csv(f'{file_path}')
+    except:
+        df = pd.read_csv(f'{file_path}\housing_data.csv')
 
 #creating an array for the sale price
 sale_price = df['sale_price'].to_numpy()
@@ -65,12 +68,15 @@ print(f'The RMSE is {RMSE_rounded}')
 print(f'The MAE is {MAE_rounded}')
 
 ######################################## 3. Binary Target ###################################################
-file_path = input('Enter your file path for the mushroom_data.csv file:')
 
 try:
-    df = pd.read_csv(f'{file_path}')
+    df = pd.read_csv('mushroom_data.csv')
 except:
-    df = pd.read_csv(f'{file_path}\mushroom_data.csv')
+    file_path = input('Enter your file path for the mushroom_data.csv file:')
+    try:
+        df = pd.read_csv(f'{file_path}')
+    except:
+        df = pd.read_csv(f'{file_path}\mushroom_data.csv')
 
 #i put these in lists instead of putting them in arrays since they're not numbers
 mush_actual = df['actual'].to_list()
